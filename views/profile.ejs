@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        body {
+            font-family: "Comic Sans MS", sans-serif;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid rgb(94, 207, 155);
+            table-layout: fixed
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            background-color: #ccf18f;
+            padding: 10px;
+        }
+
+        .grid-item {
+            background-color: rgba(238, 247, 247, 0.8);
+            border: 1px solid rgba(211, 221, 217, 0.8);
+            padding: 20px;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 550px) {
+            .grid-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: stretch;
+            }
+
+            .poke_img {
+                display: flex;
+                flex-direction: column;
+                justify-content: stretch;
+                width: fit-content;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-container">
+        <table class="grid-item">
+            <tr class="poke_img">
+                <td class="poke_img"><img
+                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<%= id %>.png"
+                        alt=""></td>
+            </tr>
+            <tr class="poke_img">
+                <th>#<%= id %>: <%= name %> <br><br> Type: <%= type %>
+                </th>
+            </tr>
+        </table>
+        <table class="grid-item">
+            <tr>
+                <th colspan="2">
+                    Basic Stats
+                </th>
+            <tr>
+                <th>HP</th>
+                <th>Speed</th>
+            </tr>
+            <tr>
+                <td>
+                    <%= hp %>
+                </td>
+                <td>
+                    <%= speed %>
+                </td>
+            </tr>
+            <tr>
+                <th>Attack</th>
+                <th>Defense</th>
+            </tr>
+            <tr>
+                <td>
+                    <%= attack %>
+                </td>
+                <td>
+                    <%= defense %>
+                </td>
+            </tr>
+            <tr>
+                <th>Special Attack</th>
+                <th>Special Defense</th>
+            </tr>
+            <tr>
+                <td>
+                    <%= special_attack %>
+                </td>
+                <td>
+                    <%= special_defense %>
+                </td>
+            </tr>
+            </tr>
+        </table>
+        <table class="grid-item">
+            <tr>
+                <th colspan="2">
+                    About Me
+                </th>
+            </tr>
+            <tr>
+                <th>Height</th>
+                <th>Weight</th>
+            </tr>
+            <tr>
+                <td>
+                    <%= height %> m
+                </td>
+                <td>
+                    <%= weight %> kg
+                </td>
+            </tr>
+        </table>
+        <table class="grid-item">
+            <tr>
+                <th>Abilities</th>
+            </tr>
+            <tr>
+                <td>
+                    <%= ability %>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- HP: <%= hp %> / 225
+                <progress id="file" value="<%= hp %>" max="255">
+                    <%= hp %>%
+                </progress> -->
+
+</body>
+
+</html>

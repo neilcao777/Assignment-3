@@ -1,0 +1,129 @@
+<html>
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Pokemon
+    </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="code.js"></script>
+    <style>
+        body {
+            font-family: "Comic Sans MS", sans-serif;
+        }
+
+        header,
+        footer {
+            text-align: center;
+        }
+
+        nav {
+            background-color: #333;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 10px;
+
+            color: #f2f2f2;
+            text-decoration: none;
+
+            padding: 14px 16px;
+            text-align: center;
+
+        }
+
+        nav a:hover {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        #main_div {
+            display: flex;
+        }
+
+        .poke_name {
+            display: block;
+            text-align: center;
+            font-size: larger;
+            font-weight: 300px;
+            color: white;
+            text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+        }
+
+        img {
+            width: 100%;
+            border-radius: 10px;
+            padding: 3px;
+        }
+
+        .images_group {
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .image_container {
+            display: flex;
+            justify-content: center;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @media screen and (max-width: 550px) {
+
+            nav,
+            #main_div,
+            .images_group {
+                display: flex;
+                flex-direction: column;
+                justify-content: stretch;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>
+            Pokemon Wiki
+        </h1>
+    </header>
+    <nav>
+
+        <div id="main_div">
+            <a href="">
+                Home
+            </a>
+            <a href="search.html">
+                Search
+            </a>
+        </div>
+
+        <a href="">
+            Randomize Pokemon
+        </a>
+    </nav>
+    <main>
+
+    </main>
+    <footer>
+        <!-- <h1>.</h1> -->
+        <h5>
+            Copyright © Your Website 2022
+        </h5>
+    </footer>
+
+
+</body>
+
+</html>
