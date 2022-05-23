@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script defer src="/public/js/login.js"></script>
+
+    <!-- <link rel="stylesheet" href="/public/css/login.css"> -->
+
+    <style>
+        main {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #loginForm {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .loginSignUpButtons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+        }
+
+        .loginSignUpButtons button,
+        .loginSignUpButtons form input {
+            width: 100px;
+        }
+
+        main input,
+        main button {
+            background-color: #c4c4c4;
+            border: none;
+            border-radius: 10px;
+            padding: 5px;
+            margin: 5px;
+            width: 70%;
+            max-width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main>
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+        <h1>Log in</h1>
+        <br>
+        <form action="/" method="post" id="loginForm">
+            <input type="email" name="loginEmail" id="loginEmail" placeholder="Email" required>
+            <input type="password" name="loginPass" id="loginPass" placeholder="Password" required>
+        </form>
+
+        <div class="loginSignUpButtons">
+            <div><button type="submit" form="loginForm" id="loginButton">Login</button></div>
+            <form action="/signup" method="get" id="signUpButton">
+                <input type="submit" value="Sign Up" />
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>

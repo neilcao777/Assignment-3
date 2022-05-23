@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        main {
+            align-items: center;
+
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .profileCard {
+            box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+            transition: 0.3s;
+            border-radius: 20px;
+            margin: 50px;
+            padding: 25px 16px;
+            line-height: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: antiquewhite;
+            color: rgb(96, 100, 72);
+        }
+
+        table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px;
+            padding: 25px 16px;
+            line-height: 30px;
+            text-align: center;
+        }
+
+        table td,
+        table th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            line-height: 30px;
+            text-align: center;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        table tr:hover {
+            background-color: #ddd;
+        }
+
+        table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
+            background-color: antiquewhite;
+            color: rgb(96, 100, 72);
+            /* border-radius: 15px; */
+
+        }
+
+        .price {
+            text-align: right;
+            color: rgb(96, 100, 72);
+        }
+
+        #checkButton {
+
+            background-color: rgb(177, 163, 145);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+
+        #checkButton:hover {
+            background-color: #dadfc0;
+        }
+    </style>
+</head>
+
+<body>
+    <br><br><br>
+    <h1>User Profile
+    </h1>
+
+    <main>
+
+        <div class="profileCard">
+            <p><b>Email</b>: <%= email %>
+            </p>
+
+            <p><b>Name</b>: <%= name %>
+            </p>
+
+            <p><b>Current Cart's Items</b>: <%= totalItems %>
+            </p>
+
+        </div>
+        <h1>Shopping Carts: </h1>
+        <br>
+        <%- shoppingTable %>
+
+            <div class="price">
+                <p>----------------</p>
+                <p>Subtotal: $<%= subTotal %>
+                </p>
+                <p>GST: $<%= gst %>
+                </p>
+                <p>PST: $<%= pst %>
+                </p>
+                <p>========</p>
+                <p>
+                    Total: $<%= total %>
+
+                </p>
+
+            </div>
+            <br>
+            <div class="checkout">
+                <form action="/checkout" method="post" id="checkoutButton">
+                    <input type="submit" value="Check Out" id="checkButton" />
+                </form>
+            </div>
+
+
+
+
+
+
+
+    </main>
+
+</body>
+
+</html>
