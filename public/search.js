@@ -78,7 +78,7 @@ async function load_all() {
       url: `https://pokeapi.co/api/v2/pokemon/${i}`,
       success: find_photo,
     });
-    show_pokemon += `<div class='image_container' id='${pokemon_name}'> <a href="/profile/${i}"> ${pokemon_name} <img src="${pokemon_photo}"></a> </div>`;
+    show_pokemon += `<div class='image_container' id='${pokemon_name}'> <a href="/profile/${i}"> <button class="buy">Buy</button> <img src="${pokemon_photo}"></a> </div>`;
     if (i % 5 == 0) {
       show_pokemon += `</div>`;
     }

@@ -3,7 +3,12 @@ to_add = "";
 function processPokeRes(data) {
   //   console.log(data);
   // Step 3: Process the response and get the information
-  to_add += `<div class="poke_name"><p>${data.name}<p/></div>
+  to_add += `
+  
+  <div class="poke_name">
+  <form action="/buy" method="post" id="${data.id}">
+      <input class="poke_name" type="submit" value="Buy" />
+  </form>
   <br>
    <div class="image_container"> 
    <a href="/profile/${data.id}">

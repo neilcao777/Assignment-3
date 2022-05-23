@@ -1,6 +1,7 @@
 const { JSDOM } = require("jsdom");
 const { window } = new JSDOM("");
 const $ = require("jquery")(window);
+const bcrypt = require("bcrypt");
 
 const express = require("express");
 var cors = require("cors");
@@ -9,6 +10,12 @@ let userdb;
 let totalItems;
 let totalAmount;
 let userEmail;
+let userName;
+let table;
+let subtotle_;
+let gst_;
+let pst_;
+
 var session = require("express-session");
 app.use(session({ secret: "ssshhhhh", saveUninitialized: true, resave: true }));
 
@@ -204,9 +211,67 @@ app.post("/checkout", (req, res, next) => {
   next();
 });
 
-app.post("/", (req, res, next) => {
+app.post("/buy", authorize, (req, res, next) => {
+  // var now = new Date(Date.now());
+  // var formatted =
+  //   now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+  // $.ajax({
+  //   url: "http://localhost:5000/timeline/insert",
+  //   type: "put",
+  //   data: {
+  //     text: `The user has added 1 items with total amount of $ ${price}.`,
+  //     time: `${now}`,
+  //     hits: 1,
+  //   },
+  //   success: function (r) {
+  //     console.log(r);
+  //   },
+  // });
+  console.log(req.session.user);
+  pokepokeid = Math.floor(Math.random() * 100);
+  pokeprice = Math.floor(Math.random() * 100);
+
+  userdb.collection("userAccounts").updateOne(
+    { email: { $eq: req.session.user } },
+    {
+      $push: {
+        shoppingCart: {
+          pokeID: pokepokeid,
+          price: pokeprice,
+          quantity: 1,
+        },
+      },
+    }
+  );
+  // res.status(200).send("Checkout Completed.");
+  // res.render(__dirname + "/views/history.ejs", {
+  //   session: req.session.authenticated,
+  //   allItems: totalItems,
+  //   allAmount: totalAmount,
+  // });
+  res.redirect("/");
+  // res.render(__dirname + "/views/userProfile.ejs", {
+  //   session: req.session.authenticated,
+  //   email: userEmail,
+  //   name: userName,
+  //   totalItems: totalItems,
+  //   total: totalAmount,
+  //   shoppingTable: table,
+  //   subTotal: subtotle_,
+  //   gst: gst_,
+  //   pst: pst_,
+  // });
+  next();
+});
+
+app.post("/cart", (req, res, next) => {
   let user;
   let userEmail;
+  let userName;
+  let table;
+  let subtotle_;
+  let gst_;
+  let pst_;
   userdb
     .collection("userAccounts")
     .find({ email: { $eq: req.body.loginEmail } })
@@ -224,7 +289,7 @@ app.post("/", (req, res, next) => {
       } else if (user.password === req.body.loginPass) {
         req.session.authenticated = true;
         req.session.user = req.body.loginEmail;
-        userEmail = req.body.loginEmail;
+
         console.log("login sucessful");
 
         // get cart items
@@ -251,7 +316,7 @@ app.post("/", (req, res, next) => {
           to_add += "</table>";
         }
 
-        // calculate total
+        // calculate sub total
         subtotal = 0;
         for (i = 0; i < result[0].shoppingCart.length; i++) {
           subtotal +=
@@ -260,12 +325,18 @@ app.post("/", (req, res, next) => {
         }
         subtotal_string = (Math.round(subtotal * 100) / 100).toFixed(2);
 
+        subtotle_ = subtotal_string;
+
         // calculate GST
         gst = subtotal * 0.05;
         gst_string = (Math.round(gst * 100) / 100).toFixed(2);
+
+        gst_ = gst_string;
         // calculate PST
         pst = subtotal * 0.07;
         pst_string = (Math.round(pst * 100) / 100).toFixed(2);
+
+        pst_ = pst_string;
         // calculate total
         total = subtotal + gst + pst;
         total_string = (Math.round(total * 100) / 100).toFixed(2);
@@ -273,6 +344,9 @@ app.post("/", (req, res, next) => {
         // global variable
         totalItems = result[0].shoppingCart.length;
         totalAmount = total_string;
+        table = to_add;
+        userEmail = req.body.loginEmail;
+        userName = result[0].name;
 
         // render
         res.render(__dirname + "/views/userProfile.ejs", {
@@ -306,7 +380,7 @@ app.post("/", (req, res, next) => {
 
 app.get("/login/", (req, res) => {
   if (req.session.authenticated) {
-    res.render(__dirname + "/views/userProfile.ejs");
+    res.render("/cart");
     console.log("already have a session");
   } else {
     res.render(__dirname + "/views/login.ejs", {
